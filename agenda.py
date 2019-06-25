@@ -10,11 +10,6 @@ BOLD    = "\033[;1m"
 REVERSE = "\033[;7m"
 YELLOW = "\033[0;33m"
 
-# Imprime texto com cores. Por exemplo, para imprimir "Oi mundo!" em vermelho, basta usar
-#
-# printCores('Oi mundo!', RED)
-# printCores('Texto amarelo e negrito', YELLOW + BOLD)
-
 def printCores(texto, cor) :
   print(cor + texto + RESET)
 
@@ -145,6 +140,120 @@ def descricaoValida(string):
 #___________________________________________________________________________________________ OUTROS CÓDIGOS ___________________________________________________________________________________________________________________
 
 #Essas funções utilizam as funções de validez(horaValida, dataValida, etc) e retorna true apenas o primeiro elemento de cada item, caso o usuário digite por exemplo duas datas, ele retornará apenas a primeira data!
+def dataOrganizar(lista):
+  if dataValida(lista[0]) == True:
+    return lista[0]
+  return False
+
+def horaOrganizar(lista):
+  if len(lista) >= 2:
+    if dataValida(lista[0]) == True:
+      if horaValida(lista[1]) == True :
+        return lista[0] and lista[1]
+    else:
+      if horaValida(lista[0]) == True:
+        return lista[0]
+  return False
+
+def prioridadeOrganizar(lista):
+  if len(lista) >= 2:
+    if dataValida(lista[0]) == True:
+      if horaValida(lista[1]) == True:
+        if prioridadeValida(lista[2]) == True:
+          return lista[2]
+      else:
+        if prioridadeValida(lista[1]) == True:
+          return lista[1]
+    else:
+      if horaValida(lista[0]) == True:
+        if prioridadeValida(lista[1]) == True:
+          return lista[1]
+      else:
+        if prioridadeValida(lista[0]) == True:
+          return lista[0]
+  return False
+
+def contextoOrganizar(lista):
+  if len(lista) >= 2:
+    if projetoValido(lista[len(lista)-1]) == True:
+      if contextoValido(lista[len(lista)-2]) == True:
+        return lista[len(lista)-2]
+    else:
+      if contextoValido(lista[len(lista)-1]) == True:
+        return lista[len(lista)-1]
+  return False
+
+def projetoOrganizar(lista):
+  if len(lista) >= 2:
+    if projetoValido(lista[len(lista)-1]) == True:
+      return lista[len(lista)-1]
+  return False
+
+
+
+#>>> OBSERVAÇÃO: O igual a string, serve para comparar nas funções feitas acima já que elas retornam falso ou string.
+#>>> A (FUNÇÃO DESCRIÇÃO) ABAIXO SE UTILIZA DA (FUNÇÃO INDEX) PARA PEGAR TODOS OS ELEMENTOS QUE NÃO SÃO DESCRIÇÃO(Data, Hora, Projeto, Prioridade, Contexto) E REMOVER DA LISTA.
+
+def descricao(lista):
+  flagstring = ""
+  listaFlag = lista[:] # [:] — CRIA COPIA DA LISTA, PARA NÃO ALTERAR A LISTA ORIGINAL.
+  if dataValida(listaFlag[0]) == True:
+    listaFlag.pop(0)
+
+  if horaValida(listaFlag[0]) == True:
+    listaFlag.pop(0)
+
+  if prioridadeValida(listaFlag[0]) == True:
+    listaFlag.pop(0)
+
+  if projetoValido(listaFlag[len(listaFlag)-1]) == True:
+    listaFlag.pop()
+
+  if contextoValido(listaFlag[len(listaFlag)-1]) == True:
+    listaFlag.pop()
+  #DEPOIS QUE VERIFICAR TODAS AS FUNÇÕES, ADICIONA APENAS A DESCRIÇÃO A FLAG STRING:
+  for palavra in listaFlag:
+    flagstring += palavra 
+    flagstring += ' '
+    #Adiciona palavra>espaço>palavra>espaço.
+  return flagstring
+#____________________________________________________________________________________________________________________________________________________________________________________________
+
+#>>> TAREFA 8:
+#(Organiza a linha de modo que fique: (DESC, (DATA, HORA, PRIORIDADE, CONTEXTO, PROJETO))).
+
+def organizar(linha):
+  itens = []
+  linha = linha.strip() #RETIRA OS ESPAÇOS DO COMEÇO E DO FINAL.
+  tokens = linha.split() #QUEBRA EM LISTA DE PALAVRAS. ["DGDFGD","GJGHJGHJ","FGJHFGHJFGJH"]
+  descricaoW = descricao(tokens)
+  #Para podermos organizar o arquivo primeiro pegamos cada elemento(Data, Hora, Prioridade, Contexto, Projeto) 
+  dataW = dataOrganizar(tokens)
+  horaW = horaOrganizar(tokens)
+  prioridadeW = prioridadeOrganizar(tokens)
+  contextoW = contextoOrganizar(tokens)
+  projetoW = projetoOrganizar(tokens)
+  #Adiciona a descrição a lista e informações
+  itens = (descricaoW.strip(),) #Tira os espaços da descrição e coloca a "," devido ser tupla, adicionando em itens.
+  
+  # Um problema que pode acontecer é que caso o usuário não digite uma data ou uma hora por exemplo, o print ficara vazio como no exemplo abaixo
+  # Verificando se o arquivo está vazio, exemplo = ('eu quero taca fogo nos homofobicos amanha 14012015', ('14012020', '', '', '', ''))
+  itensFlag = ()
+  if dataW != False:
+    itensFlag += dataW,
+  if horaW != False:
+    itensFlag += horaW,
+  if prioridadeW != False:
+    itensFlag += prioridadeW,
+  if contextoW != False:
+    itensFlag += contextoW,
+  if projetoW != False:
+    itensFlag += projetoW,
+  if itensFlag == ():
+    itensFlag = (''),
+  itens += itensFlag,
+  return itens
+
 def data(lista):
   for x in lista:
     if dataValida(x) == True:
@@ -175,92 +284,20 @@ def contexto(lista):
       return x
   return False
 
-#PARA VERIFICAR A DESCRIÇÃO PRIMEIRO É NECESSÁRIO PEGAR UM INDEX PARA QUE
-def index(lista,string):
-  x = 0
-  while x < len(lista):
-    if lista[x] == string:
-      return x
-    x += 1
-  return False
-
-#>>> OBSERVAÇÃO: O igual a string, serve para comparar nas funções feitas acima já que elas retornam falso ou string.
-#>>> A (FUNÇÃO DESCRIÇÃO) ABAIXO SE UTILIZA DA (FUNÇÃO INDEX) PARA PEGAR TODOS OS ELEMENTOS QUE NÃO SÃO DESCRIÇÃO(Data, Hora, Projeto, Prioridade, Contexto) E REMOVER DA LISTA.
-
-def descricao(lista):
-  flagstring = ""
-  listaFlag = lista[:] # [:] — CRIA COPIA DA LISTA, PARA NÃO ALTERAR A LISTA ORIGINAL.
-  if type(data(listaFlag)) == str:
-    listaFlag.pop(index(listaFlag,data(listaFlag)))
-  if type(hora(listaFlag)) == str:
-    listaFlag.pop(index(listaFlag,hora(listaFlag)))
-  if type(projeto(listaFlag)) == str:
-    listaFlag.pop(index(listaFlag,projeto(listaFlag)))
-  if type(prioridade(listaFlag)) == str:
-    listaFlag.pop(index(listaFlag,prioridade(listaFlag)))
-  if type(contexto(listaFlag)) == str:
-    listaFlag.pop(index(listaFlag,contexto(listaFlag)))
-  #DEPOIS QUE VERIFICAR TODAS AS FUNÇÕES, ADICIONA APENAS A DESCRIÇÃO A FLAG STRING:
-  for palavra in listaFlag:
-    flagstring += palavra 
-    flagstring += ' '
-    #Adiciona palavra>espaço>palavra>espaço.
-  return flagstring
-#____________________________________________________________________________________________________________________________________________________________________________________________
-
-#>>> TAREFA 8:
-#(Organiza a linha de modo que fique: (DESC, (DATA, HORA, PRIORIDADE, CONTEXTO, PROJETO))).
-
-def organizar(linha):
-  itens = []
-  dataW = '' 
-  horaW = ''
-  prioridadeW = ''
-  contextoW = ''
-  projetoW = ''
-  linha = linha.strip() #RETIRA OS ESPAÇOS DO COMEÇO E DO FINAL.
-  tokens = linha.split() #QUEBRA EM LISTA DE PALAVRAS. ["DGDFGD","GJGHJGHJ","FGJHFGHJFGJH"]
-  descricaoW = descricao(tokens)
-  #Para podermos organizar o arquivo primeiro pegamos cada elemento(Data, Hora, Prioridade, Contexto, Projeto) 
-  if type(data(tokens)) == str:
-    dataW += data(tokens)
-  if type(hora(tokens)) == str:
-    horaW += hora(tokens)
-  if type(prioridade(tokens)) == str:
-    prioridadeW += prioridade(tokens)
-  if type(contexto(tokens)) == str:
-    contextoW += contexto(tokens)
-  if type(projeto(tokens)) == str:
-    projetoW += projeto(tokens)
-  #Adiciona a descrição a lista e informações
-  itens = (descricaoW.strip(),) #Tira os espaços da descrição e coloca a "," devido ser tupla, adicionando em itens.
-  
-  # Um problema que pode acontecer é que caso o usuário não digite uma data ou uma hora por exemplo, o print ficara vazio como no exemplo abaixo
-  # Verificando se o arquivo está vazio, exemplo = ('eu quero taca fogo nos homofobicos amanha 14012015', ('14012020', '', '', '', ''))
-  itensFlag = ()
-  if dataW != "":
-    itensFlag += dataW,
-  if horaW != "":
-    itensFlag += horaW,
-  if prioridadeW != "":
-    itensFlag += prioridadeW,
-  if contextoW != "":
-    itensFlag += contextoW,
-  if projetoW != "":
-    itensFlag += projetoW,
-  itens += itensFlag,
-  return itens
-
 #>>> TAREFA 9:
 #(A função adicionar tem como foco em primeiro lugar ter uma descrição, opcionalmente os outros elementos).
 
 def adicionar(tupla):
   arquivo = open("todo.txt", "r") #"r" = ler o arquivo.
   palavra = arquivo.readlines() #Quebra cada linha do arquivo em uma lista com todas as palavras
-
   #O motivo de ter criado dois IF's.
   #(Data, Hora e Prioridade vem primeiro) e depois (Descrição, contexto e Projeto).
-
+  if palavra != []:
+    flag = palavra[len(palavra)-1]
+    flag = flag[len(flag)-1]
+    if flag != '\n':
+      palavra[len(palavra)-1] = palavra[len(palavra)-1] + '\n'
+    
   if len(tupla) == 2:
     for x in tupla[1]:
       if dataValida(x) == True:
@@ -428,11 +465,6 @@ def listar():
     print((linha +1), printarOrganizado(lista[linha]))
     linha += 1
   return
-
-# Imprime texto com cores. Por exemplo, para imprimir "Oi mundo!" em vermelho, basta usar
-#
-# printCores('Oi mundo!', RED)
-# printCores('Texto amarelo e negrito', YELLOW + BOLD)
 
 def printCores(texto, cor) :
   return cor + texto + RESET
@@ -625,6 +657,10 @@ def priorizar(numero,prio):
 
 #PARTE FINAL:
 def processarComandos(comandos) :
+  print("""
+    █████████████████████████████ Seja bem vindo a nossa agenda! █████████████████████████████
+           No caso de dúvidas de como utilizar o programa digite o comando "help".
+""")
   if comandos[1] == "a":
     copia = comandos[2:]
     stringFlag = ''
@@ -647,24 +683,25 @@ def processarComandos(comandos) :
     return
   elif comandos[1] == "help":
     print("""
-█████████████████████████████ Seja bem vindo a nossa agenda! █████████████████████████████
+        █████████████████████████████ Seja bem vindo a nossa agenda! █████████████████████████████
 
-▶▶▶ SOBRE O PROGRAMA: 
-O programa é um pequeno programa onde o usuário faz as anotações de compromissos e
-horários e informações diversas, geralmente utilizado para fins pessoais.
+    ▶▶▶ SOBRE O PROGRAMA: 
+    O programa é um pequeno aplicativo onde o usuário faz as anotações de compromissos e
+    horários e informações diversas, geralmente utilizado para fins pessoais.
 
-▶▶▶ ANTES DE UTILIZARMOS OS COMANDOS:
-Para podermos utilizar os comandos devemos primeiro abri-lo digitando o seu nome pela sua extensão (Exemplo: agenda.py):
-Exemplo: "agenda.py a (21062019 Ouvir todos os álbuns de Nicki Minaj)"
-Sem asteriscos e sem parenteses, você abre o arquivo e logo em seguida escolhe um dos comandos abaixo:
+    ▶▶▶ ANTES DE UTILIZARMOS OS COMANDOS:
+    Para podermos utilizar os comandos devemos primeiro abri-lo digitando o seu nome pela sua extensão (Exemplo: agenda.py):
+    Exemplo: "agenda.py a (21062019 Ouvir todos os álbuns de Nicki Minaj)".
+      — A nova tarefa deve ser adicionado exatamente na ordem data, hora, prioridade, descrição, contexto e projeto, sendo obrigatório apenas descrição. ()
+    Sem asteriscos e sem parenteses, você abre o arquivo e logo em seguida escolhe um dos comandos abaixo:
 
-▶▶▶ COMANDOS:
-▶ ADICIONAR: Para adicionarmos uma tarefa a agenda, digite o comando 'a' (sem aspas).
-▶ REMOVER: Para removermos uma tarefa da agenda, digite o comando 'r' (sem aspas) e o número correspondente a tarefa.
-▶ FAZER: Para marcar uma tarefa como feita, digite o comando 'f' (sem aspas) e o número correspondente a tarefa.
-▶ PRIORIZAR = Para modificar a prioridade de uma tarefa, digite o comando 'p' (sem aspas), o número corresponde a tarefa e a nova prioridade.
-▶ LISTAR = 'l' Para listarmos todas as atividades ordenada, digite o comando 'l' (sem aspas).
-""")
+    ▶▶▶ COMANDOS:
+    ▶ ADICIONAR: Para adicionarmos uma tarefa a agenda, digite o comando 'a' (sem aspas).
+    ▶ REMOVER: Para removermos uma tarefa da agenda, digite o comando 'r' (sem aspas) e o número correspondente a tarefa.
+    ▶ FAZER: Para marcar uma tarefa como feita, digite o comando 'f' (sem aspas) e o número correspondente a tarefa.
+    ▶ PRIORIZAR: Para modificar a prioridade de uma tarefa, digite o comando 'p' (sem aspas), o número corresponde a tarefa e a nova prioridade com uma letra maiscúla.
+    ▶ LISTAR: 'l' Para listarmos todas as atividades ordenada, digite o comando 'l' (sem aspas).
+    """)
   else :
     print("Comando inválido.")
     
