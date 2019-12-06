@@ -7,7 +7,7 @@
 <p float="left">
   <image width=100%, src="./1.gif"/> 
 </p>
-## Obtenção do Script
+# AAAAAAAAAAAAAAAAAAAAAAAAAA
 
 ### Download
 Download direto pelo botão verde **Clone or Download** ou abra o VSCode, pressione Ctrl+Shift+P e digite *"Git clone"* e cole *https://github.com/Tiodonilo/Projeto-IF968-2019.git* para salvar em um repositório local.
