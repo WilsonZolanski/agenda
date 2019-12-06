@@ -7,3 +7,12 @@
 <p float="left">
   <image width=100%, src="./1.gif"/> 
 </p>
+## DETALHES
+### Instruções e Comandos
+
+```shell
+# Abra o Shell: CMD/Bash... Dentro do repositório local.
+# Tente Python, Python3 ou py dependendo da versão e configuração do python!
+# Para testar abra o Prompt de comando e digite python se abrir o 2.6 ou dar erro, então tente python3.
+# Se der erro de syntax ou quaisquer outras circunstâncias, tente py ou verifique se o python está no path.
+```
