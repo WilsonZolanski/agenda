@@ -20,4 +20,18 @@ Siga os passos a seguir se é o seu primeiro acesso e não sabe como funciona!
 #3 — Caso queira entender cada função do programa, digite o comando "help" para entender quais são as funções do programa e como deve manusear o código.
 ```
 ### Download
-Baixe o programa pelo botão verde **Clone or Download** ou se preferir, abra o programa Visual Studio Code, pressione no teclado Ctrl+Shift+P e digite *"Git clone"* e cole >>>*https://github.com/WilsonZolanski/agenda.git*<<< para salvar em um repositório local.
+Baixe o programa pelo botão verde (**Clone or Download**) ou se preferir, abra o programa Visual Studio Code, pressione no teclado Ctrl+Shift+P e digite *"Git clone"* e cole (*https://github.com/WilsonZolanski/agenda.git*) para salvar em um repositório local.
+
+#Todos os comandos
+
+>Adicionar nova tarefa:
+```shell
+>> python agenda.py a (data) (hora) (prioridade) (descrição) (contexto) (projeto)
+```
+*Observação* = A adição de uma nova tarefa deve seguir exatamente essa ordem, também é possível adicionar apenas a "descrição" da sua tarefa sem os outros dados.
+- `Data`: A data deve ser digitada dessa forma "DDMMAAAA" onde "D" é o Dia, "M" o mês e "A" o ano. Exemplo: 14012018 (Isso representa 14/01/2018)
+- `Hora`: A hora deve ser digitada dessa forma "HHMM" onde "H" é a hora e "M" o minuto. Exemplo 1030 (Isso representa 10 horas e 30 minutos)
+- `Prioridade`: A prioridade da sua tarefa deve ser digitada seguindo a ordem do alfabeto, a ordem será seguida de acordo com alfabeto, em outras palavras a letra "A" terá mais prioridade que a letra "Z". (Caso seja digitado letras maiúsculas e minúsculas, a ordem será seguida da maiúscula para minúscula).
+  - **OBS:** Caso o programa seja aberto no ubuntu, a prioridade terá um sistema de cores diferentes.
+- `Contexto`: Contexto da tarefa pode ser traduzido também como o local onde será feito a tarefa. Exemplo: @casa.
+- `Projeto`: O projeto da tarefa pode ser traduzido também como a finalidade da sua tarefa. Exemplo: +Pesquisa.
