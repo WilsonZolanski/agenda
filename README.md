@@ -7,7 +7,8 @@
 <p float="left">
   <image width=100%, src="./1.gif"/> 
 </p>
-### Mais detalhes
+
+## Mais detalhes
 
 ### Instruções de primeiro acesso
 Siga os passos a seguir se é o seu primeiro acesso e não sabe como funciona!
