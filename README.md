@@ -14,11 +14,10 @@
 Siga os passos a seguir se é o seu primeiro acesso e não sabe como funciona!
 
 ```shell
-#1 — Abra o Prompt de Comando, assim que abrilo tente acessar a pasta  que está o seu arquivo "agenda.py" como no gif exemplificado acima. 
-#2 — Assim como está no gif, continue digitando o nome do programa "Python" ou "Python3" (dependendo da sua versão) + o nome do arquivo "agenda.py" + comando desejável.
-#>>> Exemplo: cd downloads/python agenda.py help
-#3 — Caso queira entender cada função do programa, digite o comando help para entender quais são as funções do programa e como deve manusear o código.
+#1 — Abra o Prompt de Comando em seguida tente acessar a pasta onde se encontra "agenda.py", como no gif exemplificado acima. 
+#2 — Assim como está no gif, digite o nome do programa "Python" ou "Python3" (dependendo da sua versão) + o nome do arquivo "agenda.py" + comando desejável.
+#>>> Exemplo: C:\Users/wilson/downloads/python agenda.py help
+#3 — Caso queira entender cada função do programa, digite o comando "help" para entender quais são as funções do programa e como deve manusear o código.
 ```
-
 ### Download
-Download direto pelo botão verde **Clone or Download** ou abra o VSCode, pressione Ctrl+Shift+P e digite *"Git clone"* e cole *https://github.com/Tiodonilo/Projeto-IF968-2019.git* para salvar em um repositório local.
+Baixe o programa pelo botão verde **Clone or Download** ou se preferir, abra o programa Visual Studio Code, pressione no teclado Ctrl+Shift+P e digite *"Git clone"* e cole >>>*https://github.com/WilsonZolanski/agenda.git*<<< para salvar em um repositório local.
