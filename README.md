@@ -24,7 +24,7 @@ Baixe o programa pelo botão verde (**Clone or Download**) ou se preferir, abra 
 
 # Todos os comandos
 
->Adicionar nova tarefa:
+### Adicionar:
 ```shell
 >> python agenda.py a (data) (hora) (prioridade) (descrição) (contexto) (projeto)
 ```
@@ -35,3 +35,25 @@ Baixe o programa pelo botão verde (**Clone or Download**) ou se preferir, abra 
   - **OBS:** Caso o programa seja aberto no ubuntu, a prioridade terá um sistema de cores diferentes.
 - `Contexto`: Contexto da tarefa pode ser traduzido também como o local onde será feito a tarefa. Exemplo: @casa.
 - `Projeto`: O projeto da tarefa pode ser traduzido também como a finalidade da sua tarefa. Exemplo: +Pesquisa.
+
+### Listar:
+O comando "listar" pode ser utilizado também por data, hora, prioridade, contexto ou projeto.
+```shell
+>> python agenda.py l 
+```
+### Remover:
+O comando "remover" pode ser utilizado pegando o número index que se encontra ao lado de cada tarefa:
+```shell
+>> python agenda.py r (index da tarefa)
+```
+### Fazer:
+O comando "fazer" pode ser utilizado quando o usuário quiser marcar uma tarefa como concluída.
+  - Caso o usuário marque a tarefa como feita, será movida para um novo arquivo "done.txt".
+```shell
+>> python agenda.py f (index da tarefa)
+```
+### Prioridade:
+O comando "prioridade" pode ser utilizado quando o usuário desejar adicionar ou alterar a prioridade de uma tarefa.
+```shell
+>> python agenda.py p (Nova prioridade) (Índice da tarefa)
+```
