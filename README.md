@@ -22,7 +22,7 @@ Siga os passos a seguir se é o seu primeiro acesso e não sabe como funciona!
 ### Download
 Baixe o programa pelo botão verde (**Clone or Download**) ou se preferir, abra o programa Visual Studio Code, pressione no teclado Ctrl+Shift+P e digite *"Git clone"* e cole (*https://github.com/WilsonZolanski/agenda.git*) para salvar em um repositório local.
 
-#Todos os comandos
+# Todos os comandos
 
 >Adicionar nova tarefa:
 ```shell
