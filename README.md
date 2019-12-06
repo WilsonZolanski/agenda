@@ -1,4 +1,4 @@
-<h1>Agenda de Tarefas</h1>
+<h1>Agenda de Tarefas — Projeto do Centro de Informática - UFPE</h1> 
 
 > O programa bsuca simplicidade de um arquivo "todo.txt" com foco em gerenciar suas tarefas com o menor número de toques possíveis, não é preciso muitas caixas de seleções, modificações constante ou seletores de datas. O programa tem como objetivo principal o fácil manuseio.
 
