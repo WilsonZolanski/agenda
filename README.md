@@ -7,7 +7,11 @@
 <p float="left">
   <image width=100%, src="./1.gif"/> 
 </p>
-## DETALHES
+## Obtenção do Script
+
+### Download
+Download direto pelo botão verde **Clone or Download** ou abra o VSCode, pressione Ctrl+Shift+P e digite *"Git clone"* e cole *https://github.com/Tiodonilo/Projeto-IF968-2019.git* para salvar em um repositório local.
+
 ### Instruções e Comandos
 
 ```shell
@@ -16,3 +20,5 @@
 # Para testar abra o Prompt de comando e digite python se abrir o 2.6 ou dar erro, então tente python3.
 # Se der erro de syntax ou quaisquer outras circunstâncias, tente py ou verifique se o python está no path.
 ```
+
+#### Comandos
