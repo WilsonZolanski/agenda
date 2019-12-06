@@ -8,6 +8,8 @@
   <image width=100%, src="./1.gif"/> 
 </p>
 
+# Mais detalhes
+
 ## Mais detalhes
 
 ### Instruções de primeiro acesso
